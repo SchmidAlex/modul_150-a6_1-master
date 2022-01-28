@@ -17,9 +17,9 @@
                     <div class="col-sm-6">
                         <select name="subject" id="homework-subject" class="form-control">
                             <option value="Mathematik">Mathematik</option>
-                            <option value="Mathematik">Deutsch</option>
-                            <option value="Mathematik">Englisch</option>
-                            <option value="Mathematik">Geschichte</option>
+                            <option value="Deutsch">Deutsch</option>
+                            <option value="Englisch">Englisch</option>
+                            <option value="Geschichte">Geschichte</option>
                         </select>
                     </div>
                 </div>
