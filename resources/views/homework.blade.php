@@ -33,6 +33,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="homework-due" class="col-sm-3 control-label">Due</label>
+
+                    <div class="col-sm-6">
+                        <input type="date" name="due" id="homework-due" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-6">
                         <button type="submit" class="btn btn-primary">
                             <i class="fa fa-plus"></i> Add Homework
@@ -52,7 +60,7 @@
                     <thead>
                         <th>Homework</th>
                         <th>Subject</th>
-                        <th>&nbsp;</th>
+                        <th>Due</th>
                     </thead>
 
                     <tbody>
@@ -65,6 +73,7 @@
                                     <div>{{ $homework_item->subject }}</div>
                                 </td>
                                 <td class="table-text">
+                                    <div>{{ $homework_item->due }}</div>
                                 </td>
 
                                 <td>
@@ -73,6 +82,14 @@
                                         {{ method_field('DELETE') }}
 
                                         <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="/homework/{{ $homework_item->id }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('PUT') }}
+
+                                        <button class="btn btn-sm btn-outline-danger">Edit</button>
                                     </form>
                                 </td>
                             </tr>
