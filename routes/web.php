@@ -23,9 +23,10 @@ Route::get('/', function () {
  */
 Route::get('/homework', function () {
     $homework = \App\Homework::orderBy('created_at', 'asc')->get();
-
+    $subject = \App\Subject::orderBy('created_at', 'asc')->get();
     return view('homework', [
         'homework' => $homework,
+        'subject' => $subject,
     ]);
 });
 /**
@@ -67,5 +68,37 @@ Route::delete('/homework/{id}', function ($id) {
  */
 Route::get('/hello', function () {
     return view('hello');
+});
+
+Route::get('/subject', function () {
+    $subject = \App\Subject::orderBy('created_at', 'asc')->get();
+
+    return view('subject', [
+        'subject' => $subject,
+    ]);
+});
+
+Route::post('/subject', function (Request $request) {
+    $validator = Validator::make($request->all(), [
+        'subject' => 'required|max:255',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('/subject')
+            ->withInput()
+            ->withErrors($validator);
+    }
+
+    $subject = new \App\Subject;
+    $subject->subject = $request->subject;
+    $subject->save();
+
+    return redirect('/subject');
+});
+
+Route::delete('/subject/{id}', function ($id) {
+    \App\Subject::findOrFail($id)->delete();
+
+    return redirect('/subject');
 });
 

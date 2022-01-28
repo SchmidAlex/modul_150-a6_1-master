@@ -16,10 +16,14 @@
 
                     <div class="col-sm-6">
                         <select name="subject" id="homework-subject" class="form-control">
-                            <option value="Mathematik">Mathematik</option>
-                            <option value="Deutsch">Deutsch</option>
-                            <option value="Englisch">Englisch</option>
-                            <option value="Geschichte">Geschichte</option>
+
+                            @if (count($subject) > 0)
+                                @foreach ($subject as $subject_item)
+                                    <option value="{{$subject_item->subject}}">{{$subject_item->subject}}</option>
+                                @endforeach
+                            @else
+                                <option value="NoSubjects">No subject available</option>
+                            @endif
                         </select>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHomeworkTable extends Migration
+class CreateSubjectTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateHomeworkTable extends Migration
      */
     public function up()
     {
-        Schema::table('homework', function (Blueprint $table) {
-            $table->date('due')->nullable();
+        Schema::create('subjects', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('subject');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +27,6 @@ class CreateHomeworkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('homework');
+        Schema::dropIfExists('subjects');
     }
 }
